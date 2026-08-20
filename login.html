@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Login | Giridhar Training Institutions</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+
+        /* =========================
+           RESET
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f7fb;
+            color: #172033;
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+            height: 78px;
+            width: 100%;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: #2563eb;
+            color: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 23px;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-text strong {
+            font-size: 21px;
+            color: #172033;
+            letter-spacing: 0.3px;
+        }
+
+        .logo-text span {
+            font-size: 10px;
+            color: #7a8495;
+            letter-spacing: 1.5px;
+            font-weight: bold;
+            margin-top: 3px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 34px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #4b5563;
+            font-size: 15px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
+        .nav-links a.active {
+            color: #2563eb;
+        }
+
+        .login-nav-btn {
+            background: #2563eb !important;
+            color: white !important;
+            padding: 12px 22px;
+            border-radius: 8px;
+        }
+
+        .login-nav-btn:hover {
+            background: #1d4ed8 !important;
+        }
+
+
+        /* =========================
+           LOGIN SECTION
+        ========================= */
+
+        .login-section {
+            min-height: calc(100vh - 78px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 55px 7%;
+            background:
+                linear-gradient(
+                    135deg,
+                    #eef5ff 0%,
+                    #f8fbff 50%,
+                    #edf3ff 100%
+                );
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 1100px;
+            min-height: 570px;
+            background: #ffffff;
+            border-radius: 22px;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            box-shadow: 0 20px 55px rgba(37, 99, 235, 0.13);
+        }
+
+
+        /* =========================
+           LEFT SIDE
+        ========================= */
+
+        .login-left {
+            background: linear-gradient(145deg, #2563eb, #173b9b);
+            color: white;
+            padding: 55px 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-left::before {
+            content: "";
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.07);
+            position: absolute;
+            top: -130px;
+            right: -100px;
+        }
+
+        .login-left::after {
+            content: "";
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.06);
+            position: absolute;
+            bottom: -120px;
+            left: -100px;
+        }
+
+        .left-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .welcome-icon {
+            width: 62px;
+            height: 62px;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 27px;
+            margin-bottom: 25px;
+        }
+
+        .welcome-text {
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+            opacity: 0.9;
+        }
+
+        .login-left h1 {
+            font-size: 42px;
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+
+        .login-left h1 span {
+            color: #dbeafe;
+        }
+
+        .login-left-description {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #e5edff;
+            max-width: 470px;
+            margin-bottom: 30px;
+        }
+
+
+        /* =========================
+           FEATURES
+        ========================= */
+
+        .features {
+            display: grid;
+            gap: 15px;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            font-size: 15px;
+            color: #ffffff;
+        }
+
+        .feature-icon {
+            width: 30px;
+            height: 30px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+        }
+
+
+        /* =========================
+           RIGHT SIDE
+        ========================= */
+
+        .login-right {
+            padding: 55px 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+        }
+
+        .login-form-box {
+            width: 100%;
+            max-width: 420px;
+        }
+
+        .form-heading {
+            margin-bottom: 30px;
+        }
+
+        .form-heading h2 {
+            font-size: 30px;
+            color: #172033;
+            margin-bottom: 8px;
+        }
+
+        .form-heading p {
+            color: #7a8495;
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           FORM
+        ========================= */
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: bold;
+            color: #374151;
+            margin-bottom: 8px;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #8b95a7;
+            font-size: 15px;
+        }
+
+        .form-input {
+            width: 100%;
+            height: 50px;
+            border: 1px solid #d8dee8;
+            border-radius: 9px;
+            padding: 0 15px 0 45px;
+            font-size: 14px;
+            outline: none;
+            color: #172033;
+            transition: 0.3s;
+            background: #ffffff;
+        }
+
+        .form-input:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.10);
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: none;
+            cursor: pointer;
+            color: #7a8495;
+            font-size: 15px;
+        }
+
+
+        /* =========================
+           REMEMBER / FORGOT
+        ========================= */
+
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 5px 0 24px;
+        }
+
+        .remember {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 13px;
+            color: #5f6978;
+            cursor: pointer;
+        }
+
+        .remember input {
+            width: 15px;
+            height: 15px;
+            accent-color: #2563eb;
+        }
+
+        .forgot-password {
+            font-size: 13px;
+            color: #2563eb;
+            font-weight: 600;
+        }
+
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+
+
+        /* =========================
+           LOGIN BUTTON
+        ========================= */
+
+        .login-button {
+            width: 100%;
+            height: 52px;
+            border: none;
+            border-radius: 9px;
+            background: #2563eb;
+            color: white;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            transition: 0.3s;
+        }
+
+        .login-button:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.22);
+        }
+
+
+        /* =========================
+           REGISTER
+        ========================= */
+
+        .register-text {
+            text-align: center;
+            margin-top: 22px;
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        .register-text a {
+            color: #2563eb;
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           DEMO LOGIN
+        ========================= */
+
+        .demo-box {
+            margin-top: 25px;
+            background: #f1f6ff;
+            border: 1px solid #dbe8ff;
+            border-radius: 10px;
+            padding: 15px;
+        }
+
+        .demo-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #2563eb;
+            font-weight: bold;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .demo-box p {
+            font-size: 12px;
+            color: #596579;
+            line-height: 1.8;
+        }
+
+        .demo-box strong {
+            color: #172033;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        .footer {
+            background: #101827;
+            color: #cbd5e1;
+            text-align: center;
+            padding: 18px;
+            font-size: 13px;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .navbar {
+                padding: 0 4%;
+            }
+
+            .nav-links {
+                gap: 18px;
+            }
+
+            .login-container {
+                grid-template-columns: 1fr;
+                max-width: 600px;
+            }
+
+            .login-left {
+                padding: 40px;
+            }
+
+            .login-left h1 {
+                font-size: 34px;
+            }
+
+            .login-right {
+                padding: 40px;
+            }
+        }
+
+
+        @media (max-width: 650px) {
+
+            .navbar {
+                height: 70px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .login-section {
+                padding: 25px 15px;
+            }
+
+            .login-left {
+                padding: 35px 25px;
+            }
+
+            .login-left h1 {
+                font-size: 30px;
+            }
+
+            .login-left-description {
+                font-size: 14px;
+            }
+
+            .login-right {
+                padding: 35px 25px;
+            }
+
+            .form-heading h2 {
+                font-size: 26px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================= -->
+
+    <nav class="navbar">
+
+        <a href="index.html" class="logo">
+
+            <div class="logo-icon">
+                <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+
+            <div class="logo-text">
+                <strong>Giridhar</strong>
+                <span>TRAINING INSTITUTIONS</span>
+            </div>
+
+        </a>
+
+
+        <ul class="nav-links">
+
+            <li>
+                <a href="index.html">Home</a>
+            </li>
+
+            <li>
+                <a href="about.html">About</a>
+            </li>
+
+            <li>
+                <a href="courses.html">Courses</a>
+            </li>
+
+            <li>
+                <a href="trainers.html">Trainers</a>
+            </li>
+
+            <li>
+                <a href="contact.html">Contact</a>
+            </li>
+
+            <li>
+                <a href="login.html" class="login-nav-btn active">
+                    <i class="fa-solid fa-user"></i>
+                    Login
+                </a>
+            </li>
+
+        </ul>
+
+    </nav>
+
+
+
+    <!-- =========================
+         LOGIN SECTION
+    ========================= -->
+
+    <section class="login-section">
+
+        <div class="login-container">
+
+
+            <!-- =========================
+                 LEFT CONTENT
+            ========================= -->
+
+            <div class="login-left">
+
+                <div class="left-content">
+
+                    <div class="welcome-icon">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+
+                    <div class="welcome-text">
+                        Welcome Back
+                    </div>
+
+                    <h1>
+                        Continue Your
+                        <span>Learning Journey.</span>
+                    </h1>
+
+                    <p class="login-left-description">
+                        Login to access your student account,
+                        training programs, learning resources
+                        and course information.
+                    </p>
+
+
+                    <div class="features">
+
+                        <div class="feature">
+
+                            <div class="feature-icon">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+
+                            <span>
+                                Access your training programs
+                            </span>
+
+                        </div>
+
+
+                        <div class="feature">
+
+                            <div class="feature-icon">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+
+                            <span>
+                                Track your learning progress
+                            </span>
+
+                        </div>
+
+
+                        <div class="feature">
+
+                            <div class="feature-icon">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+
+                            <span>
+                                Get course updates
+                            </span>
+
+                        </div>
+
+
+                        <div class="feature">
+
+                            <div class="feature-icon">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+
+                            <span>
+                                Connect with trainers
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================
+                 RIGHT LOGIN FORM
+            ========================= -->
+
+            <div class="login-right">
+
+                <div class="login-form-box">
+
+
+                    <div class="form-heading">
+
+                        <h2>
+                            Student Login
+                        </h2>
+
+                        <p>
+                            Enter your details to continue
+                        </p>
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+
+                    <div class="form-group">
+
+                        <label class="form-label">
+                            Email Address
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-envelope input-icon"></i>
+
+                            <input
+                                type="email"
+                                class="form-input"
+                                id="email"
+                                placeholder="Enter your email"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- PASSWORD -->
+
+                    <div class="form-group">
+
+                        <label class="form-label">
+                            Password
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-lock input-icon"></i>
+
+                            <input
+                                type="password"
+                                class="form-input"
+                                id="password"
+                                placeholder="Enter your password"
+                            >
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                onclick="togglePassword()"
+                            >
+
+                                <i
+                                    class="fa-solid fa-eye"
+                                    id="eyeIcon"
+                                ></i>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- OPTIONS -->
+
+                    <div class="form-options">
+
+                        <label class="remember">
+
+                            <input type="checkbox">
+
+                            <span>
+                                Remember me
+                            </span>
+
+                        </label>
+
+
+                        <a href="#" class="forgot-password">
+                            Forgot Password?
+                        </a>
+
+                    </div>
+
+
+
+                    <!-- LOGIN BUTTON -->
+
+                    <button
+                        type="button"
+                        class="login-button"
+                        onclick="loginUser()"
+                    >
+
+                        <span>
+                            Login
+                        </span>
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </button>
+
+
+
+                    <!-- REGISTER -->
+
+                    <div class="register-text">
+
+                        Don't have an account?
+
+                        <a href="#">
+                            Register Now
+                        </a>
+
+                    </div>
+
+
+
+                    <!-- DEMO LOGIN -->
+
+                    <div class="demo-box">
+
+                        <div class="demo-title">
+
+                            <i class="fa-solid fa-circle-info"></i>
+
+                            Demo Login
+
+                        </div>
+
+                        <p>
+                            Email:
+                            <strong>student@gmail.com</strong>
+                        </p>
+
+                        <p>
+                            Password:
+                            <strong>123456</strong>
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer class="footer">
+
+        © 2026 Giridhar Training Institutions.
+        All Rights Reserved.
+
+    </footer>
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+        /* Show / Hide Password */
+
+        function togglePassword() {
+
+            const password =
+                document.getElementById("password");
+
+            const eyeIcon =
+                document.getElementById("eyeIcon");
+
+
+            if (password.type === "password") {
+
+                password.type = "text";
+
+                eyeIcon.classList.remove("fa-eye");
+
+                eyeIcon.classList.add("fa-eye-slash");
+
+            } else {
+
+                password.type = "password";
+
+                eyeIcon.classList.remove("fa-eye-slash");
+
+                eyeIcon.classList.add("fa-eye");
+
+            }
+
+        }
+
+
+
+        /* Demo Login */
+
+        function loginUser() {
+
+            const email =
+                document.getElementById("email").value.trim();
+
+            const password =
+                document.getElementById("password").value.trim();
+
+
+            if (email === "" || password === "") {
+
+                alert("Please enter your email and password.");
+
+                return;
+
+            }
+
+
+            if (
+                email === "student@gmail.com" &&
+                password === "123456"
+            ) {
+
+                alert("Login successful! Welcome to Giridhar Training Institutions.");
+
+                window.location.href = "index.html";
+
+            } else {
+
+                alert(
+                    "Invalid login details.\n\n" +
+                    "Demo Email: student@gmail.com\n" +
+                    "Demo Password: 123456"
+                );
+
+            }
+
+        }
+
+    </script>
+
+
+</body>
+</html>
